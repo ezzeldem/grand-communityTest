@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="theme-color" content="#fff" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" />
+        <title>Test</title>
+        <style>
+            #calendar {
+                margin: 40px;
+            }
+            .event-title {
+                text-align: center;
+                font-size: 24px;
+                font-weight: 600;
+                margin: 20px 0;
+            }
+
+            .event-title .span-style {
+                font-size: 20px;
+            }
+
+            .modal {
+                font-size: 20px;
+                font-weight: 500;
+                margin: 20px 0;
+            }
+
+            .span-style {
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page" class="hfeed site">
+            <!--           start content-->
+            <div class="main-container">
+                <main class="main wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- calendar modal -->
+                    <div id="modal-view-event" class="modal modal-top fade calendar-modal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <h4 class="event-title modal-style"></h4>
+                                    <h6 class="event-description modal-style"></h6>
+                                    <h6 class="event-date modal-style"></h6>
+                                    <h6 class="event-time modal-style"></h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <!--           end content-->
+        </div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+
+
+                // get the date 
+                var d = new Date("July 21, 1983 01:15:00");
+                var n = d.getDate();
+
+                // fullCalendar function
+                $("#calendar").fullCalendar({
+                    defaultView: "month",
+                    defaultDate: n,
+
+                    // custom fullCalendar header
+                    header: {
+                        left: 'title',
+                        center: 'month,agendaWeek,agendaDay',
+                        right: 'today prev,next'
+                    },
+
+                    
+                    // opne popup function
+                    eventClick: function (eventObj, $el, info) {
+                        // var description = ;
+                        $("#modal-view-event").modal();
+                        $(".event-title").html( eventObj.title );
+                        $(".event-description").html( eventObj.description);
+                        $(".event-date").html("it will be on " + "<span class='span-style'>" + eventObj.startParam + "</span>");
+                        $(".event-time").html("at " + "<span class='span-style'>" + eventObj.startEditable + "</span>" + " o'clock");
+                    },
+                     // add events
+                    events: [
+                        {
+                            title: "test",
+                            description:
+                                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, eos? Ducimus sint qui placeat iste, ad blanditiis eius architecto voluptatem dolorum at quis culpa aliquid ipsum sunt consectetur tempora debitis.Google",
+                            start: "2020-11-28",
+                            startParam: "2020-11-28",
+                            end: "2020-11-28",
+                            startEditable: "22",
+                        },
+                        {
+                            title: "test2",
+                            description:
+                                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, eos? Ducimus sint qui placeat iste, ad blanditiis eius architecto voluptatem dolorum at quis culpa aliquid ipsum sunt consectetur tempora debitis.Google",
+                            start: "2020-11-29",
+                            startParam: "2020-11-28",
+                            end: "2020-11-30",
+                            startEditable: "22",
+                        },
+                        {
+                            title: "test3",
+                            description:
+                                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, eos? Ducimus sint qui placeat iste, ad blanditiis eius architecto voluptatem dolorum at quis culpa aliquid ipsum sunt consectetur tempora debitis.Google",
+                            start: "2020-11-29",
+                            startParam: "2020-11-28",
+                            end: "2020-11-30",
+                            startEditable: "22",
+                        },
+                        {
+                            title: "test4",
+                            description:
+                                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, eos? Ducimus sint qui placeat iste, ad blanditiis eius architecto voluptatem dolorum at quis culpa aliquid ipsum sunt consectetur tempora debitis.Google",
+                            start: "2020-12-10",
+                            startParam: "2020-12-10",
+                            end: "2020-11-13",
+                            startEditable: "22",
+                        },
+                    ],
+                });
+            });
+        </script>
+    </body>
+</html>
